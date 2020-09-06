@@ -1,0 +1,17 @@
+---
+- name: This playbook installs multiple packages on the managed nodes
+  hosts: webservers
+  become: true
+  tasks:
+  - name: install multiple packages
+    yum:
+     # name: ['git','gzip', 'wget', 'telnet','gcc', 'make']
+      name: "{{item}}"
+      state: installed
+    with_items:
+        - git
+        - gzip
+        - wget
+        - telnet
+        - gcc
+        - make
